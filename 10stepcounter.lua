@@ -1,7 +1,7 @@
 -- Gradient sequence triggered by redstone input from the top
--- Uses term.clear() to show each step as a full-screen color
+-- Uses mon.clear() to show each step as a full-screen color
 -- Outputs redstone on the back for 5 seconds after sequence
-
+mon = peripheral.find("monitor")
 local function runSequence()
   local gradient = {
     colors.green,   -- step 0
@@ -18,14 +18,14 @@ local function runSequence()
 
   -- Run the 10-step sequence
   for i = 1, #gradient do
-    term.setBackgroundColor(gradient[i])
-    term.clear()
+    mon.setBackgroundColor(gradient[i])
+    mon.clear()
     sleep(1) -- one step per second
   end
 
   -- Clear to black
-  term.setBackgroundColor(colors.black)
-  term.clear()
+  mon.setBackgroundColor(colors.black)
+  mon.clear()
 
   -- Output redstone on the back for 5 seconds
   redstone.setOutput("back", true)
